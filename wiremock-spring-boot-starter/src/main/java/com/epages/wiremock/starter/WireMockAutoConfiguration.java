@@ -36,7 +36,7 @@ public class WireMockAutoConfiguration {
 		if(properties.getStubPath() != null) {
 			config.fileSource(new ClasspathFileSource(properties.getStubPath()));
 		}
-		config.extensions(new ResponseTemplateTransformer(false));
+		config.templatingEnabled(false);
 		return config;
 	}
 

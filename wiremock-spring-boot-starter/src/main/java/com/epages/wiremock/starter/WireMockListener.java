@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
+import com.github.tomakehurst.wiremock.common.filemaker.FilenameMaker;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.core.Ordered;
 import org.springframework.test.context.MergedContextConfiguration;
@@ -73,7 +74,7 @@ class WireMockListener extends AbstractTestExecutionListener implements Ordered 
 		WireMockServer server = applicationContext.getBean(WireMockServer.class);
 		server.resetMappings();
 		if(! stubPath.isEmpty()) {
-			server.loadMappingsUsing(new JsonFileMappingsSource(new ClasspathFileSource(stubPath)));
+			server.loadMappingsUsing(new JsonFileMappingsSource(new ClasspathFileSource(stubPath), new FilenameMaker()));
 		}
 	}
 
